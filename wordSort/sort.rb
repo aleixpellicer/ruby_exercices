@@ -1,14 +1,15 @@
 #function sort
 def sortAlphabetically(string)
 	#lets remove the dots
-	string.gsub!('.','')
+	string = string.gsub!(/[^a-z0-9\s]/i, '')
 	#we transofrm the string into a words array
-	words = string.split(" ")
-	words = words.sort
-	puts words.inspect
-
+	words = words = string.split(" ")
+	#we sort the array ignoring downcase
+	words = words.sort_by{|word| word.downcase}
+	#lets turn the array into a string
+	words = words.join(' ')
+	return words
 end
-
-word = "hola que ase."
-
-sortAlphabetically(word)
+#let's try it
+word = "Hola que ase.!"
+puts sortAlphabetically(word)

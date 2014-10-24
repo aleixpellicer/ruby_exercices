@@ -5,8 +5,8 @@ def enCrypt(string, shift=nil, direction, alphabet)
 	#we create a map of the alphabet to position it
 	hash = Hash[alphabet.map.with_index.to_a]
 	cesarWord = ""
-	#delete all the dots
-	string.gsub!('.','')
+	#delete punctuation signs
+	string = string.gsub!(/[^a-z0-9\s]/i, '')
 	#we loop each character
 	string.split("").each do |i|
 		#if the character it's an empty character we just add the space to the concatenation word (cesarWord)
