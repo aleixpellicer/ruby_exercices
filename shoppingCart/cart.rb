@@ -1,44 +1,14 @@
-Items = {
-	"banana" => {
-		"price" => 10,
-		"type" => "fruit",
-	},
-	"orange juice" => {
-		"price" => 10,
-		"type" => "fruit",
-	},
-	"rice" => {
-		"price" => 1,
-		"type" => "regular",
-	},
-	"vacuum cleaner" => {
-		"price" => 250,
-		"type" => "houseware",
-	},
-	"anchovies" => {
-		"price" => 2,
-		"type" => "regular",
-	}
-}
-
 class Product
-	def initialize(product, quantity, loyal)
+	def initialize(product, price, quantity, loyal)
 		@product = product
 		@price = price
 		@quantity = quantity
-		@shopping_list = {}
 
 		if loyal == true && @quantity > 5
 			@@startDiscount = 10
 		else
 			@@startDiscount = 0
 		end
-	end
-	def addItem(product, quantity)
-		@shopping_list[product] = quantity unless @shopping_list[product]
-		@shopping_list[product] += quantity
-	end
-	def discount(product, )
 
 	end
 end
@@ -49,23 +19,15 @@ class Fruit < Product
 		@weekday = weekday
 	end
 	def discount
-		
 		if @weekday > 5
-			extraDiscount = 10;
-		else
-			extraDiscount = 0;
-		end
-
-		totalPrice = @price * @quantity
-		discount = extraDiscount + @@startDiscount
-		if discount > 0
+			totalPrice = @price * @quantity
+			discount = 10 + @@startDiscount
 			totalDiscount = totalPrice / discount
+			totalPriceDiscount = totalPrice - totalDiscount
+			puts "You bought:\n#{@quantity} #{@product}\nUnits: #{@quantity}\nPrice per unit: #{@price}\nTotal price:#{totalPrice}\nDiscount: #{discount}%\nTotal discount:#{totalDiscount}\nTotal price with discount:#{totalPriceDiscount}\n=================="
 		else
-			totalDiscount = 0
+			puts "The discount on #{@quantity} #{@product} is #{@@startDiscount}"
 		end
-		totalPriceDiscount = totalPrice - totalDiscount
-
-		puts "You bought:\n#{@quantity} #{@product}\nUnits: #{@quantity}\nPrice per unit: #{@price}\nTotal price:#{totalPrice}\nDiscount: #{discount}%\nTotal discount:#{totalDiscount}\nTotal price with discount:#{totalPriceDiscount}\n=================="
 	end
 end
 
@@ -74,24 +36,12 @@ class Houseware < Product
 		super(product, price, quantity, loyal)
 	end
 	def discount
-		
 		if @price > 100
-			extraDiscount = 5;
+			discount = (@price * @quantity) / (5 + @@startDiscount)
+			puts "The discount on #{@quantity} #{@product} is #{discount}"
 		else
-			extraDiscount = 0;
+			puts "The discount on #{@quantity} #{@product} is #{@@startDiscount}"
 		end
-
-		totalPrice = @price * @quantity
-		discount = extraDiscount + @@startDiscount
-		if discount > 0
-			totalDiscount = totalPrice / discount
-		else
-			totalDiscount = 0
-		end
-		totalPriceDiscount = totalPrice - totalDiscount
-
-		puts "You bought:\n#{@quantity} #{@product}\nUnits: #{@quantity}\nPrice per unit: #{@price}\nTotal price:#{totalPrice}\nDiscount: #{discount}%\nTotal discount:#{totalDiscount}\nTotal price with discount:#{totalPriceDiscount}\n=================="
-
 	end
 end
 
@@ -100,17 +50,7 @@ class NormalItem < Product
 		super(product, price, quantity, loyal)
 	end
 	def discount
-		extraDiscount = 0
-		totalPrice = @price * @quantity
-		discount = extraDiscount + @@startDiscount
-		if discount > 0
-			totalDiscount = totalPrice / discount
-		else
-			totalDiscount = 0
-		end
-		totalPriceDiscount = totalPrice - totalDiscount
-
-		puts "You bought:\n#{@quantity} #{@product}\nUnits: #{@quantity}\nPrice per unit: #{@price}\nTotal price:#{totalPrice}\nDiscount: #{discount}%\nTotal discount:#{totalDiscount}\nTotal price with discount:#{totalPriceDiscount}\n=================="
+		puts "The discount on #{@quantity} #{@product} is #{@startDiscount}"
 	end
 end
 
