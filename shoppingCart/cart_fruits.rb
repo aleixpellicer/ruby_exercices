@@ -1,126 +1,36 @@
-Fruits = {
-	"apples" => 10,
-	"oranges" => 5,
-	"grapes" => 15,
-	"banana" => 20,
-	"watermelon" => 50
-}
-
-apples     10$
-oranges     5$
-grapes     15$
-banana     20$
-watermelon 50$
-
-class Product
-	def initialize(product, quantity, loyal)
-		@product = product
-		@price = price
-		@quantity = quantity
-		@shopping_list = {}
-
-		if loyal == true && @quantity > 5<w
-			@@startDiscount = 10
-		else
-			@@startDiscount = 0
-		end
+class ShoppingCart
+	attr_accessor :product, :price, :quantity, :listItem   
+	def initialize
+		@listItem = {}
+		@price_list ={}
+		# @banana = 10
 	end
-	def addItem(product, quantity)
-		@shopping_list[product] = quantity unless @shopping_list[product]
-		@shopping_list[product] += quantity
+	def add_item (product, quantity)
+		return @listItem[product] = quantity unless @listItem[product]
+		@listItem[product] += quantity
 	end
-	def discount(product, )
+	def remove_item (product)
+		@listItem.delete(product)
+	end
+	def price_item (product, quantity, price)
+		# Definir cada product como una nueva clase, asociando les nombres y precios
+		# # Recoger el array con la lista de productos y hacer un each para que coja cada 
+		# item y le sume el precio. Diego ha convertido el array de items en objeto y luego hace el 
+		# each con Key y Values. Para hacer el total se multiplica el precio por la quantity.
+				@price_list ={}
+		# puts "#{@listItem (0)}"
+	end
 
-	end
+	# crear funcion para aplicar discount definido en la clase items
+
 end
 
-class Fruit < Product
-	def initialize(product, price, quantity, loyal, weekday)
-		super(product, price, quantity, loyal)
-		@weekday = weekday
-	end
-	def discount
-		
-		if @weekday > 5
-			extraDiscount = 10;
-		else
-			extraDiscount = 0;
-		end
+# CREATION OF NEW SHOPPING CART
 
-		totalPrice = @price * @quantity
-		discount = extraDiscount + @@startDiscount
-		if discount > 0
-			totalDiscount = totalPrice / discount
-		else
-			totalDiscount = 0
-		end
-		totalPriceDiscount = totalPrice - totalDiscount
-
-		puts "You bought:\n#{@quantity} #{@product}\nUnits: #{@quantity}\nPrice per unit: #{@price}\nTotal price:#{totalPrice}\nDiscount: #{discount}%\nTotal discount:#{totalDiscount}\nTotal price with discount:#{totalPriceDiscount}\n=================="
-	end
-end
-
-class Houseware < Product
-	def initialize(product, price, quantity, loyal)
-		super(product, price, quantity, loyal)
-	end
-	def discount
-		
-		if @price > 100
-			extraDiscount = 5;
-		else
-			extraDiscount = 0;
-		end
-
-		totalPrice = @price * @quantity
-		discount = extraDiscount + @@startDiscount
-		if discount > 0
-			totalDiscount = totalPrice / discount
-		else
-			totalDiscount = 0
-		end
-		totalPriceDiscount = totalPrice - totalDiscount
-
-		puts "You bought:\n#{@quantity} #{@product}\nUnits: #{@quantity}\nPrice per unit: #{@price}\nTotal price:#{totalPrice}\nDiscount: #{discount}%\nTotal discount:#{totalDiscount}\nTotal price with discount:#{totalPriceDiscount}\n=================="
-
-	end
-end
-
-class NormalItem < Product
-	def initialize(product, price, quantity, loyal)
-		super(product, price, quantity, loyal)
-	end
-	def discount
-		extraDiscount = 0
-		totalPrice = @price * @quantity
-		discount = extraDiscount + @@startDiscount
-		if discount > 0
-			totalDiscount = totalPrice / discount
-		else
-			totalDiscount = 0
-		end
-		totalPriceDiscount = totalPrice - totalDiscount
-
-		puts "You bought:\n#{@quantity} #{@product}\nUnits: #{@quantity}\nPrice per unit: #{@price}\nTotal price:#{totalPrice}\nDiscount: #{discount}%\nTotal discount:#{totalDiscount}\nTotal price with discount:#{totalPriceDiscount}\n=================="
-	end
-end
-
-# Bananas, 10€, 4 units, is loyal, wednesday -> should output 
-banana = Fruit.new("Bananas", 10, 4, true, 6)
-banana.discount
-
-orangeJuice = Fruit.new("Orange Juices", 10, 2, false, 6)
-orangeJuice.discount
-
-vacummer = Houseware.new("Vacummer", 150, 1, false)
-vacummer.discount
-
-vacummerC = Houseware.new("Cheap Vacummer", 90, 2, false)
-vacummerC.discount
-
-rice = NormalItem.new("Rice", 1, 2, false)
-rice.discount
-
-anchovies = NormalItem.new('Anchovies', 2, 3, true)
-anchovies.discount
-
+my_cart = ShoppingCart.new
+my_cart.add_item("banana",2)
+puts my_cart.listItem
+my_cart.add_item("butter",2)
+puts my_cart.listItem
+# my_cart.remove_item("banana")
+# puts my_cart.listItem

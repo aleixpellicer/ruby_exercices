@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <style>
+        .centered {
+            width: 100%;
+            margin-top: 200px;
+            text-align: center;
+        }
+        </style>
+    </head>
+    <body>
+        <% if @enough==1 %>
+        <h1>IS WORTH F*** NOTHING</h1>
+        <% else %>
+        <form action="songs/new/" method="post">
+            <input type="text" placeholder="Author..." name="author" />
+            <input type="text" name="song" placeholder="Song title..." />
+            <input type="submit" value="Send" />
+        </form>
+        <ul class="music">
+            <% @@songs.each do |author, song| %>
+                    <%= "<li>#{author.to_s} -> #{song}</li>" %>
+            <% end %>
+        </ul>
+        <% end %>
+    </body>
+</html>

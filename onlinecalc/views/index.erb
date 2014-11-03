@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Awesome online calculator</h1>
+        <p>This is a little exercice done during the Ironhack/GenerationSpain bootcamp</p>
+        
+        <% if @@operation != "" %>
+            <h2>The result of the <%= @@operation %> of <%= @@first_value %> and <%= @@second_value %> is <%= @@result %><h2>
+        <% end %>
+
+        <form action="sum" method="post">
+            <input type="text" name="first_value" placeholder="First value..." />
+            <input type="text" name="second_value" placeholder="Second value..." />
+            <input type="submit" value="Sum" />
+        </form>
+        <form action="substract" method="post">
+            <input type="text" name="first_value" placeholder="First value..." />
+            <input type="text" name="second_value" placeholder="Second value..." />
+            <input type="submit" value="Substract" />
+        </form>
+        <form action="multiply" method="post">
+            <input type="text" name="first_value" placeholder="First value..." />
+            <input type="text" name="second_value" placeholder="Second value..." />
+            <input type="submit" value="Multiply" />
+        </form>
+        <form action="divide" method="post">
+            <input type="text" name="first_value" placeholder="First value..." />
+            <input type="text" name="second_value" placeholder="Second value..." />
+            <input type="submit" value="Divide" />
+        </form>
+        <a href="counting/" title="counting">Counting...</a>
+    </body>
+</html>
